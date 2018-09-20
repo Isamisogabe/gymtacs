@@ -51,3 +51,17 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# ページネーション
+gem 'kaminari'
+
+# ckeditorの導入
+gem 'ckeditor'
+
+gem 'rmagick'
+gem 'mini_magick'
+# 画像アップロード
+gem 'carrierwave'
+# herokuappに画像アップロードするためのgem
+gem 'cloudinary'
+

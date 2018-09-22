@@ -24,7 +24,7 @@
             		<span class="caret"></span>
             	</button>
             	<ul class="dropdown-menu" role="menu">
-            	  <li role="presentation"><a href="#">マイページ</a></li>
+            	  <li role="presentation"><%= link_to "マイページ", @current_user %></li>
             	  <li role="presentation"><a href="#">下書き一覧</a></li>
             	  <li role="presentation"><a href="#">設定</a></li>
             		<li role="presentation"><%= link_to "ログアウト", logout_path, method: :delete %></li>

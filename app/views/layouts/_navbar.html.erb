@@ -11,9 +11,30 @@
         <a class="navbar-brand" href="/">gymtacs</a>
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">SignUp</a></li>
-          <li><a href="#">LogIn</a></li>
+          <% if logged_in? %>
+            
+            <li><a href="#">お気に入り一覧</a></li>
+            <li><a href="#">クリップ一覧</a></li>
+            <li><a href="#">投稿する</a></li>
+            <li class"dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            		ユーザー設定
+            		<span class="caret"></span>
+            	</button>
+            	<ul class="dropdown-menu" role="menu">
+            	  <li role="presentation"><a href="#">マイページ</a></li>
+            	  <li role="presentation"><a href="#">下書き一覧</a></li>
+            	  <li role="presentation"><a href="#">設定</a></li>
+            		<li role="presentation"><%= link_to "ログアウト", logout_path, method: :delete %></li>
+            	</ul>
+            </li>
+          <% else %>
+          
+            <li><%= link_to "SignUp", signup_path %></li>
+            <li><%= link_to "LogIn", login_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>

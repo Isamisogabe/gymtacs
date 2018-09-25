@@ -1,0 +1,25 @@
+<div>
+  <%= form_for(@item) do |f| %>
+    <% if @item.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% @item.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :title, 'タイトル' %>
+      <%= f.text_field :title, class: "form-control item-title" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :content, '本文作成欄' %>
+      <%= f.cktext_area :content, class: "form-control item-title" %>
+    </div>
+    <%= f.hidden_field :isdraft, value: false %>
+    <%= f.submit "投稿" , class: "btn btn-primary" %>
+    <%= f.hidden_field :isdraft, value: true %>
+    <%= f.submit "下書きとして保存" , class: "btn btn-default" %>
+  <% end %>
+</div>

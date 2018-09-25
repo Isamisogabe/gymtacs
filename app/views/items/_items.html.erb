@@ -1,0 +1,30 @@
+<% if items.any? %>
+  <ul class="media-list">
+    <% items.each do |item| %>
+      <li class="media">
+        <div class="media-left">
+          <a href="/users/<%= item.user_id %>" >
+            <img alt="ユーザー写真" src="<%= gravatar_url(item.user, {size: 50 }) %>" class="img-rounded">
+          </a>
+        </div>
+        <div class="media-body">
+          <div>
+            <h6 class="media-heading">
+              <%= link_to item.title, item %>
+            </h6>
+          </div>
+          <div>
+            <p>
+              by <%= link_to item.user.name, item.user %>
+              at <%= item.created_at %>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              数
+            </p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+    
+  </ul>
+  
+<% end %>

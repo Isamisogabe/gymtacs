@@ -1,0 +1,16 @@
+<% if items.any? %>
+  <% items.each do |item| %>
+    <li class="item" >
+      <a class="item-title-time" href="./<%= item.id %>">
+        <div>
+          <h6>
+            <%= item.title%>
+          </h6>
+        </div>
+        <div>
+          <p><%= item.created_at %></p>
+        </div>
+      </a>
+    </li>
+  <% end %>
+<% end %>

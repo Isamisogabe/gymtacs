@@ -17,7 +17,7 @@
             
             <li><a href="#">お気に入り一覧</a></li>
             <li><a href="#">クリップ一覧</a></li>
-            <li><a href="#">投稿する</a></li>
+            <li><%= link_to "投稿する", :new_item %></li>
             <li class"dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
             		ユーザー設定
@@ -25,8 +25,8 @@
             	</button>
             	<ul class="dropdown-menu" role="menu">
             	  <li role="presentation"><%= link_to "マイページ", @current_user %></li>
-            	  <li role="presentation"><a href="#">下書き一覧</a></li>
-            	  <li role="presentation"><a href="#">設定</a></li>
+            	  <li role="presentation"><%= link_to "下書き一覧", "/items/index" %></li>
+            	  <li role="presentation"><%= link_to "設定", "/settings/profile" %></li>
             		<li role="presentation"><%= link_to "ログアウト", logout_path, method: :delete %></li>
             	</ul>
             </li>

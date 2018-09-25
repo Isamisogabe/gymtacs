@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-3">
+    <div>
+      <h4>記事一覧</h4>
+    </div>
+    <div>
+      <ul class="nav nav-tabs nav-justified">
+        <li class="draft" role="presentation"><a href="#draft-item" data-toggle="tab">下書き記事</a></li>
+        <li class="upload" role="presentation"><a href="#upload-item" data-toggle="tab">投稿済み</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="draft-item">
+          <ul>
+            <%= render 'items/title_time_items', items: @draft_items %>
+          </ul>
+          
+        </div>
+        <div class="tab-pane" id="upload-item">
+          <ul>
+            <%= render 'items/title_time_items', items: @upload_items %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 原稿の部分の構成 -->
+  <div class="col-md-9">
+    <%= render 'items/item_buttons', item: @draft_items.first %>
+    
+    <div>
+      <div class="item-title">
+        <h2><%= @draft_items.first.title %></h2>
+      </div>
+      <div class="item-content">
+        <p><%= @draft_items.first.content.html_safe %></p>
+      </div>
+    </div>
+  </div>
+</div>

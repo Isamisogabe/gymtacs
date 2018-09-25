@@ -1,6 +1,25 @@
 class ToppagesController < ApplicationController
   def index
     @user = User.new
+    
+    @items = Item.all.order("created_at DESC").page(params[:page])
+    
+  end
+  
+  def trend
+    
+  end
+  
+  def timeline
+    
+  end
+  
+  def favorite
+    
+  end
+  
+  def pick
+    
   end
   
   def create
@@ -11,7 +30,7 @@ class ToppagesController < ApplicationController
       redirect_to :login
     else
       flash.now[:danger] = "ユーザの登録に失敗しました"
-      render :index
+      render :new
     end
   end
   

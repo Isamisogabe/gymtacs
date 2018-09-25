@@ -1,2 +1,40 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="row">
+  <aside class="col-md-3">
+    <div class="intro">
+      <div class="intro-img">
+        <img src="<%= gravatar_url(@user, {size: 500 }) %>" alt="ユーザー写真" class="img-responsive img-rounded">
+      </div>
+      <div class="intro-name">
+        <h4><%= @user.name %></h4>
+      </div>
+      <div class="intro-description">
+        <p><%= @user.description %></p>
+      </div>
+      <div class="intro-belong">
+        <p><%= @user.belong %></p>
+      </div>
+      <div class="intro-location">
+        <p><%= @user.location %></p>
+      </div>
+    </div>
+  </aside>
+  <div class="col-md-9">
+    <ul class="nav nav-tabs nav-justified">
+      <li role="presentation"><a href="#items" data-toggle="tab">記事</a></li>
+      <li role="presentation"><a href="#followings" data-toggle="tab">フォロー</a></li>
+      <li role="presentation"><a href="#followers" data-toggle="tab">フォロワー</a></li>
+    </ul>
+    
+    <div class="tab-content">
+      <div class="tab-pane active" id="items">
+        <%= render 'items/items', items: @items %>
+      </div>
+      <div class="tab-pane" id="followings">
+        <p>記事を載せ</p>
+      </div>
+      <div class="tab-pane" id="followers">
+        <p>記事を載る</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,6 +39,40 @@
       
     </div>
   </section>
+  
+  <section>
+    <div class="row">
+      <div class="col-md-2">
+        <ul>
+          <li><%= link_to "トレンド", trend_path %></li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <%= render 'items/items', items: @items %>
+      </div>
+      <div class="col-md-2">
+        ランキングの場所
+      </div>
+    </div>
+  </section>
 <% else %>
   <h1>ログイン後のページ</h1>
+  <section>
+    <div class="row">
+      <div class="col-md-2">
+        <ul>
+          <li><%= link_to "トレンド", trend_path %></li>
+          <li><%= link_to "タイムライン", timeline_path %></li>
+          <li><%= link_to "お気に入り一覧", favorite_path %></li>
+          <li><%= link_to "クリップ一覧", pick_path %></li>
+        </ul>
+      </div>
+      <div class="col-md-7">
+        <%= render 'items/items', items: @items %>
+      </div>
+      <div class="col-md-3">
+        ランキングの場所
+      </div>
+    </div>
+  </section>
 <% end %> 

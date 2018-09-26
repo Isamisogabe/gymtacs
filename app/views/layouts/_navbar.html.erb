@@ -26,7 +26,7 @@
             	<ul class="dropdown-menu" role="menu">
             	  <li role="presentation"><%= link_to "マイページ", @current_user %></li>
             	  <li role="presentation"><%= link_to "下書き一覧", "/items/index" %></li>
-            	  <li role="presentation"><%= link_to "設定", "/settings/profile" %></li>
+            	  <li role="presentation"><%= link_to "設定", settings_path %></li>
             		<li role="presentation"><%= link_to "ログアウト", logout_path, method: :delete %></li>
             	</ul>
             </li>

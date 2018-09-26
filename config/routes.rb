@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+
+  get 'relationships/destroy'
+
   get 'items/index'
 
   get 'items/edit'
@@ -19,10 +23,10 @@ Rails.application.routes.draw do
 
   get 'users/create'
 
-  get 'toppages/index'
-  get 'settings/profile'
-  get 'settings/account'
-  get 'settings/account/custom_image'
+  #get 'toppages/index'
+  #get 'settings/profile'
+  #get 'settings/account'
+  #get 'settings/account/custom_image'
   
   
   # ログイン・ログアウト関係
@@ -39,8 +43,18 @@ Rails.application.routes.draw do
   root to: 'toppages#index'
   get 'login' , to: 'sessions#new'
   get 'signup', to: 'users#new'
-  resources :users
+  resources :users do
+    member do
+      get :followings
+      get :followers
+    end
+  end
+  
+  get  'settings', to: 'users#settings'
+  put 'settings', to: 'users#update'
+  
   resources :items
-  resources :settings, only: [:update, :delete]
+  #resources :settings, only: [:update, :delete]
+  resources :relationships, only: [:create, :destroy]
   
 end

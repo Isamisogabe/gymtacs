@@ -5,12 +5,15 @@
         <img src="<%= gravatar_url(@user, {size: 500 }) %>" alt="ユーザー写真" class="img-responsive img-rounded">
       </div>
       <div class="intro-name">
-        <h4><%= @user.name %></h4>
+        
+        <h2><%= @user.name %></h2>
       </div>
+      <%= render 'relationships/follow_button', user: @user %>
       <div class="intro-description">
         <p><%= @user.description %></p>
       </div>
       <div class="intro-belong">
+        <span class="glyphicon glyphicon"
         <p><%= @user.belong %></p>
       </div>
       <div class="intro-location">
@@ -30,10 +33,10 @@
         <%= render 'items/items', items: @items %>
       </div>
       <div class="tab-pane" id="followings">
-        <p>記事を載せ</p>
+        <%= render 'items/items', items: @following_items %>
       </div>
       <div class="tab-pane" id="followers">
-        <p>記事を載る</p>
+        <%= render 'items/items', items: @follower_items %>
       </div>
     </div>
   </div>

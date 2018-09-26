@@ -6,6 +6,25 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   has_many :items
+  has_many :relationships
+  has_many :followings, through: :relationships, source: :follow
+  has_many :reverses_of_relathionship, class_name: 'Relationship', foreign_key: 'follow_id'
+  has_many :followers, through: :reverses_of_relathionship, source: :user
+  
+  def following?(other_user)
+    self.followings.include?(other_user)
+  end
+  
+  def follow(other_user)
+    unless self == other_user
+      self.relationships.find_or_create_by(follow_id: other_user.id)
+    end
+  end
+  
+  def unfollow(other_user)
+    relationship = self.relationships.find_by(follow_id: other_user.id)
+    relationship.destroy if relationship
+  end
   # 暗号化メソッド
   has_secure_password
 end

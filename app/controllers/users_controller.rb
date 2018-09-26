@@ -3,7 +3,9 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @items = @user.items
+    @items = @user.items.page(params[:page])
+    @following_items = Item.where(user_id: @user.following_ids).page(params[:page])
+    @follower_items = Item.where(user_id: @user.follower_ids).page(params[:page])
   end
 
   def new
@@ -22,11 +24,47 @@ class UsersController < ApplicationController
     end
   end
   
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings.page(params[:page])
+    counts(@user)
+  end
   
+   def update
+    @user = current_user
+    if @user.update(user_profile_params)
+      flash[:success] = "更新しました"
+      redirect_to @user
+    else
+      flash[:danger] = "更新できませんでした"
+      render :account
+    end
+  end
+  
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.page(params[:page])
+    counts(@user)
+  end
+  
+  def settings
+    @user = current_user
+  end
+  
+#  def update_setting
+#  end
   
   private 
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+  
+  def user_profile_params
+    params.require(:user).permit(:location, :belong, :description)
+  end
+  
+  def user_account_params
+    params.require(:user).permit(:image, :email, :name)
   end
 end

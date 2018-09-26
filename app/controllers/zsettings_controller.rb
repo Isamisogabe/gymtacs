@@ -25,7 +25,11 @@ class SettingsController < ApplicationController
   
   private 
   
-  def user_params
-    params.require(:user).permit(:name, :location, :belong, :description)
+  def user_profile_params
+    params.require(:user).permit(:location, :belong, :description)
+  end
+  
+  def user_account_params
+    params.require(:user).permit(:image, :email, :name)
   end
 end

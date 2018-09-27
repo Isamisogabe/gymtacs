@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   
   # トップページ関係
   get 'trend', to: 'toppages#trend'
-  get 'timeline', to: 'toppages#timline'
+  get 'timeline', to: 'toppages#timeline'
   get 'favorite', to: 'toppages#favorite'
   get 'pick', to: 'toppages#pick'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -52,6 +52,8 @@ Rails.application.routes.draw do
   
   get  'settings', to: 'users#settings'
   put 'settings', to: 'users#update'
+  get 'account', to: 'users#account'
+  put 'account', to: 'users#account'
   
   resources :items
   #resources :settings, only: [:update, :delete]

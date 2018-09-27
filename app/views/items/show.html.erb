@@ -1,5 +1,5 @@
 <div class="row">
-  <% if @item.isdraft == true %>
+  <% if @item.user_id == current_user.id %>
     <div class="col-md-3">
       <div>
         <h4>記事一覧</h4>
@@ -26,7 +26,8 @@
       <%= render 'items/item_buttons', item: @item %>
       <div>
         <div class="item-title">
-          <h2><%= @item.title %></h2>
+          <h1><%= @item.title %></h1>
+          <p>更新日時：　<%= @item.updated_at %></p>
         </div>
         <div class="item-content">
           <%= @item.content.html_safe %>
@@ -35,6 +36,24 @@
     </div>
     
   <% else %>
-    <p>非公開記事です。</p>
+    <div class="col-md-8 col-md-offset-2">
+      <div>
+        <div class="media">
+          <%= link_to @user, class: "media-left"  do %>
+            <img src="<%= gravatar_url(@user, size: 30 ) %>" class="img-rounded" alt="">
+          <% end %>
+          <div class="media-body">
+            <h4 class="media-heading"><%= link_to @user.name, @user %></h4>
+            <p>投稿日時：　<%= @item.created_at %></p>
+          </div>
+        </div>
+        <div class="item-title"  >
+          <h1><%= @item.title %></h1>
+        </div>
+        <div class="item-content">
+          <%= @item.content.html_safe %>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>

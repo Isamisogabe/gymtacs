@@ -11,7 +11,9 @@ class ToppagesController < ApplicationController
   end
   
   def timeline
-    
+    if logged_in?
+      @items = current_user.feed_items.order('created_at DESC').page(params[:page])
+    end
   end
   
   def favorite

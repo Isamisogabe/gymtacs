@@ -28,6 +28,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @draft_items = current_user.items.where(isdraft: true).order('created_at DESC').page(params[:page])
     @upload_items = current_user.items.where(isdraft: false).order('created_at DESC').page(params[:page])
+    @user = User.find(@item.user_id)
   end
   
   def create

@@ -21,6 +21,10 @@ class User < ApplicationRecord
     end
   end
   
+  def feed_items
+    Item.where(user_id: self.following_ids + [self.id])
+  end
+  
   def unfollow(other_user)
     relationship = self.relationships.find_by(follow_id: other_user.id)
     relationship.destroy if relationship

@@ -7,7 +7,15 @@ class UsersController < ApplicationController
     @following_items = Item.where(user_id: @user.following_ids).page(params[:page])
     @follower_items = Item.where(user_id: @user.follower_ids).page(params[:page])
   end
-
+  
+  def account
+    @user = current_user
+  end
+  
+  def settings
+    @user = current_user
+  end
+  
   def new
     @user = User.new
   end
@@ -47,12 +55,6 @@ class UsersController < ApplicationController
     counts(@user)
   end
   
-  def settings
-    @user = current_user
-  end
-  
-#  def update_setting
-#  end
   
   private 
   

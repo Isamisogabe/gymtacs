@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180925233931) do
+ActiveRecord::Schema.define(version: 20180927062312) do
+
+  create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_favorites_on_item_id", using: :btree
+    t.index ["user_id", "item_id"], name: "index_favorites_on_user_id_and_item_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
+  end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -20,6 +30,16 @@ ActiveRecord::Schema.define(version: 20180925233931) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.index ["user_id"], name: "index_items_on_user_id", using: :btree
+  end
+
+  create_table "picks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_picks_on_item_id", using: :btree
+    t.index ["user_id", "item_id"], name: "index_picks_on_user_id_and_item_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_picks_on_user_id", using: :btree
   end
 
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -45,7 +65,11 @@ ActiveRecord::Schema.define(version: 20180925233931) do
     t.datetime "updated_at",                    null: false
   end
 
+  add_foreign_key "favorites", "items"
+  add_foreign_key "favorites", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "picks", "items"
+  add_foreign_key "picks", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
 end

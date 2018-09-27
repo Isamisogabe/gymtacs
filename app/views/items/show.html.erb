@@ -29,6 +29,7 @@
           <h1><%= @item.title %></h1>
           <p>更新日時：　<%= @item.updated_at %></p>
         </div>
+        
         <div class="item-content">
           <%= @item.content.html_safe %>
         </div>
@@ -50,6 +51,9 @@
         <div class="item-title"  >
           <h1><%= @item.title %></h1>
         </div>
+        
+        <%= render "items/favorite_button", item: @item %>
+        <%= render "picks/pick_button", item: @item %>
         <div class="item-content">
           <%= @item.content.html_safe %>
         </div>

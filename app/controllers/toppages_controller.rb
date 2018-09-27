@@ -16,12 +16,16 @@ class ToppagesController < ApplicationController
     end
   end
   
-  def favorite
-    
+  def like
+    if logged_in?
+      @items = current_user.favorite_items.page(params[:page])
+    end
   end
   
   def pick
-    
+    if logged_in?
+      @items = current_user.pick_items.page(params[:page])
+    end
   end
   
   def create

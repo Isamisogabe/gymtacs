@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def create
-     @user = User.new(user_params)
+    @user = User.new(user_params)
     
     if @user.save
       flash[:success] = 'ユーザの登録に成功しました'
@@ -31,6 +31,8 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  
   
   def followings
     @user = User.find(params[:id])

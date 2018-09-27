@@ -11,6 +11,40 @@ class User < ApplicationRecord
   has_many :reverses_of_relathionship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relathionship, source: :user
   
+  #favorite機能・pick機能
+  has_many :favorites
+  has_many :favorite_items, through: :favorites, source: :item
+  has_many :picks
+  has_many :pick_items, through: :picks, source: :item
+  
+  
+  
+  def pick?(item)
+    self.pick_items.include?(item)
+  end
+  
+  def pick(item)
+    self.picks.find_or_create_by(item_id: item.id )
+  end
+  
+  def unpick(item)
+    pick = self.favorites.find_by(item_id: item.id)
+    pick.destroy if favorite
+  end
+  
+  def favorite?(item)
+    self.favorite_items.include?(item)
+  end
+  
+  def favorite(item)
+    self.favorites.find_or_create_by(item_id: item.id )
+  end
+  
+  def unfavorite(item)
+    favorite = self.favorites.find_by(item_id: item.id)
+    favorite.destroy if favorite
+  end
+  
   def following?(other_user)
     self.followings.include?(other_user)
   end

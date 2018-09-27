@@ -15,8 +15,8 @@
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
             
-            <li><a href="#">お気に入り一覧</a></li>
-            <li><a href="#">クリップ一覧</a></li>
+            <li><%= link_to "お気に入り一覧", like_path %></li>
+            <li><%= link_to "ファイル一覧", pick_path %></li>
             <li><%= link_to "投稿する", :new_item %></li>
             <li class"dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">

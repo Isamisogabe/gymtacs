@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   def new
     @item = current_user.items.build
   end
+  
   def edit
     @item = Item.find(params[:id])
   end

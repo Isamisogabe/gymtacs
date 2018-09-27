@@ -44,7 +44,7 @@
     <div class="row">
       <div class="col-md-2">
         <ul>
-          <li><%= link_to "トレンド", trend_path %></li>
+          <li><%= link_to "トレンド", root_url %></li>
         </ul>
       </div>
       <div class="col-md-8">
@@ -63,7 +63,7 @@
         <ul>
           <li class="<%= 'active' if current_page?(root_url) %>"><%= link_to "トレンド", root_url %></li>
           <li class="<%= 'active' if current_page?(timeline_path) %>"><%= link_to "タイムライン", timeline_path %></li>
-          <li class="<%= 'active' if current_page?(favorite_path) %>"><%= link_to "お気に入り一覧", favorite_path %></li>
+          <li class="<%= 'active' if current_page?(like_path) %>"><%= link_to "お気に入り一覧", like_path %></li>
           <li class="<%= 'active' if current_page?(pick_path) %>"><%= link_to "クリップ一覧", pick_path %></li>
         </ul>
       </div>

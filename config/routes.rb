@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'picks/create'
+
+  get 'picks/destroy'
+
+  get 'favorites/create'
+
+  get 'favorites/destroy'
+
   get 'relationships/create'
 
   get 'relationships/destroy'
@@ -37,7 +45,7 @@ Rails.application.routes.draw do
   # トップページ関係
   get 'trend', to: 'toppages#trend'
   get 'timeline', to: 'toppages#timeline'
-  get 'favorite', to: 'toppages#favorite'
+  get 'like', to: 'toppages#like'
   get 'pick', to: 'toppages#pick'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'toppages#index'
@@ -58,5 +66,6 @@ Rails.application.routes.draw do
   resources :items
   #resources :settings, only: [:update, :delete]
   resources :relationships, only: [:create, :destroy]
-  
+  resources :favorites, only: [:create, :destroy]
+  resources :picks, only: [:create, :destroy]
 end

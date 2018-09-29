@@ -1,0 +1,32 @@
+<section>
+  <div class="row">
+    <div class="col-md-2">
+      <div class="toppage_list">
+        <p class="<%= 'active' if current_page?(root_url) %>"><span class="glyphicon glyphicon-signal" aria-hidden="true"></span> <%= link_to "トレンド", root_url %></p>
+        <p class="<%= 'active' if current_page?(timeline_path) %>"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> <%= link_to "タイムライン", timeline_path %></p>
+        <p class="<%= 'active' if current_page?(like_path) %>"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> <%= link_to "お気に入り一覧", like_path %></p>
+        <p class="<%= 'active' if current_page?(pick_path) %>"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> <%= link_to "クリップ一覧", pick_path %></p>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="list-items">
+        <%= render 'items/items', items: @items %>
+        <div class="text-center">
+          <%= paginate @items %>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="ranking">
+          <strong>ユーザーランキング</strong>
+        </div>
+        <%= render "users/ranking_users", follow_users: @follow_users, follow_ranking_counts: @follow_ranking_counts %>
+        <div class="ranking">
+          <strong>アイテムランキング</strong>
+        </div>
+      <%= render "items/ranking_items", favorite_items: @favorite_items, favorite_ranking_counts: @favorite_ranking_counts %>
+      
+    </div>
+  </div>
+</section>

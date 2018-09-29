@@ -45,9 +45,12 @@ class UsersController < ApplicationController
     if @user.update(user_profile_params)
       flash[:success] = "更新しました"
       redirect_to @user
+    elsif @user.update(user_account_params)
+      flash[:success] = "更新しました"
+      redirect_to @user
     else
       flash[:danger] = "更新できませんでした"
-      render :account
+      render :settings
     end
   end
   

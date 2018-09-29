@@ -10,15 +10,19 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="draft-item">
-          <ul>
-            <%= render 'items/title_time_items', items: @draft_items %>
-          </ul>
+          <div class="list-title-name-items">
+            <% if @draft_items.any? %>
+              <%= render 'items/title_time_items', items: @draft_items %>
+            <% end %>
+          </div>
           
         </div>
         <div class="tab-pane" id="upload-item">
-          <ul>
-            <%= render 'items/title_time_items', items: @upload_items %>
-          </ul>
+          <div class="list-title-name-items">
+            <% if @upload_items.any? %>
+              <%= render 'items/title_time_items', items: @upload_items %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -26,15 +30,18 @@
   
   <!-- 原稿の部分の構成 -->
   <div class="col-md-9">
-    <%= render 'items/item_buttons', item: @draft_items.first %>
-    
-    <div>
-      <div class="item-title">
-        <h2><%= @draft_items.first.title %></h2>
+    <% if !!@draft_items.first %>
+      <div class="item-layout">
+          <%= render 'items/item_buttons', item: @draft_items.first %>
+        <div>
+          <div class="item-title">
+            <h2><%= @draft_items.first.title %></h2>
+          </div>
+          <div class="item-content">
+            <p><%= @draft_items.first.content.html_safe %></p>
+          </div>
+        </div>
       </div>
-      <div class="item-content">
-        <p><%= @draft_items.first.content.html_safe %></p>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>

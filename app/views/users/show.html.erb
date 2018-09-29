@@ -10,14 +10,16 @@
       </div>
       <%= render 'relationships/follow_button', user: @user %>
       <div class="intro-description">
-        <p><%= @user.description %></p>
+        <span class="glyphicon glyphicon-comment"></span>
+        <%= @user.description %>
       </div>
       <div class="intro-belong">
-        <span class="glyphicon glyphicon"
-        <p><%= @user.belong %></p>
+        <span class="glyphicon glyphicon-briefcase"></span>
+        <%= @user.belong %>
       </div>
       <div class="intro-location">
-        <p><%= @user.location %></p>
+        <span class="glyphicon glyphicon-map-marker"></span>
+        <%= @user.location %>
       </div>
     </div>
   </aside>
@@ -28,7 +30,7 @@
       <li role="presentation"><a href="#followers" data-toggle="tab">フォロワー</a></li>
     </ul>
     
-    <div class="tab-content">
+    <div class="tab-content list-items">
       <div class="tab-pane active" id="items">
         <%= render 'items/items', items: @items %>
       </div>

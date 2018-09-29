@@ -6,4 +6,7 @@ class Item < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   validates :isdraft, presence: true
+  
+  has_many :favorites
+  has_many :favorite_users, through: :favorites, source: :user
 end

@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .item {
-  border-bottom: 1px;
+  border-bottom: 2px solid #EEEEEE;
   display: block;
 }
 .item-title{
@@ -11,4 +11,29 @@
 .item-user-photo-name {
   display: inline-block;
   list-style-type: none;
+}
+.media {
+  border-top: 10px solid white;
+  border-left: 10px solid white;
+  border-bottom: 10px solid white;
+}
+.media-list li{
+  background-color: white;
+  border-bottom: 2px solid #EEEEEE;
+}
+.list-items{
+  background-color: white;
+  
+}
+.list-title-name-items{
+  background-color: white;
+  padding: 10px 10px 10px 10px;
+  border-bottom: 2px solid #EEEEEE;
+  
+}
+.item-layout {
+  background-color: white;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-left: 30px;
 }

@@ -1,16 +1,16 @@
 <% if items.any? %>
   <% items.each do |item| %>
-    <li class="item" >
+    <div class="item" >
       <a class="item-title-time" href="./<%= item.id %>">
         <div>
-          <h6>
+          <h4>
             <%= item.title%>
-          </h6>
+          </h4>
         </div>
         <div>
-          <p><%= item.created_at %></p>
+          <p><%= item.created_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[item.created_at.wday]})") %></p>
         </div>
       </a>
-    </li>
+    </div>
   <% end %>
 <% end %>

@@ -3,7 +3,7 @@ class Relationship < ApplicationRecord
   belongs_to :follow, class_name: 'User'
   
   def self.ranking
-    self.group(:item_id).order("count_item_id DESC").limit(10).count(:item_id)
+    self.group(:user_id).order("count_user_id DESC").limit(10).count(:user_id)
   end
   
   validates :user_id, presence: true

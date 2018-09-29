@@ -5,8 +5,8 @@
       <span class="glyphicon glyphicon-pencil"></span> 編集
     <% end %>
   </div>
-  <div class="col-md-offset-10 col-md-1">
-    <%= link_to  item_path( item ) , method: :delete, class: "btn btn-danger", data: { :confirm => "消去してもよろしいですか？"}  do %>
+  <div class="col-md-offset-9 col-md-1">
+    <%= link_to  item , method: :delete, class: "btn btn-danger", data: { :confirm => "消去してもよろしいですか？"}  do %>
       <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> 削除
     <% end %>
   </div>

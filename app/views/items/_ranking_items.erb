@@ -1,0 +1,30 @@
+<% if favorite_items.any? %>
+  <ul class="media-list">
+    <% favorite_items.each_with_index do |item, index| %>
+      <li class="media">
+        <div class="media-left">
+          <p><%= index+1 %></p>
+        </div>
+        <div class="media-left">
+          
+          <a href="/users/<%= item.user_id %>" >
+            <img alt="ユーザー写真" src="<%= gravatar_url(item.user, {size: 40 }) %>" class="img-rounded">
+          </a>
+        </div>
+        <div class="media-body">
+          <div>
+            <h5 class="media-heading">
+              <%= link_to item.title, item %>
+            </h5>
+          </div>
+          <div>
+            <p>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              <%= favorite_ranking_counts[item.id] %>
+            </p>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

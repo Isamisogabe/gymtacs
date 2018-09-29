@@ -11,49 +11,59 @@
     
       <div class="tab-content">
         <div class="tab-pane active" id="draft-item">
-          <ul>
+          <div class="list-title-name-items">
             <%= render 'items/title_time_items', items: @draft_items %>
-          </ul>
+          </div>
         </div>
         <div class="tab-pane" id="upload-item">
-          <ul>
+          <div class="list-title-name-items">
             <%= render 'items/title_time_items', items: @upload_items %>
-          </ul>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-md-9">
-      <%= render 'items/item_buttons', item: @item %>
-      <div>
-        <div class="item-title">
-          <h1><%= @item.title %></h1>
-          <p>更新日時：　<%= @item.updated_at %></p>
-        </div>
-        
-        <div class="item-content">
-          <%= @item.content.html_safe %>
+      <div class="item-layout">
+        <%= render 'items/item_buttons', item: @item %>
+        <div>
+          <div class="item-title">
+            <h1><%= @item.title %></h1>
+            <p>更新日時：　<%= @item.updated_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@item.created_at.wday]})") %></p>
+          </div>
+          
+          <div class="item-content">
+            <%= @item.content.html_safe %>
+          </div>
         </div>
       </div>
     </div>
     
   <% else %>
     <div class="col-md-8 col-md-offset-2">
-      <div>
+      <div class="item-layout">
         <div class="media">
           <%= link_to @user, class: "media-left"  do %>
             <img src="<%= gravatar_url(@user, size: 30 ) %>" class="img-rounded" alt="">
           <% end %>
           <div class="media-body">
             <h4 class="media-heading"><%= link_to @user.name, @user %></h4>
-            <p>投稿日時：　<%= @item.created_at %></p>
+            <p>投稿日時：　<%= @item.created_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@item.created_at.wday]})") %></p>
           </div>
         </div>
         <div class="item-title"  >
           <h1><%= @item.title %></h1>
         </div>
+        <div class="row">
+          <div class="col-md-8">
+            <%= render "items/favorite_button", item: @item %>
+          </div>
+          <div class="col-md-4">
+            <%= render "picks/pick_button", item: @item %>
+          </div>
+        </div>
         
-        <%= render "items/favorite_button", item: @item %>
-        <%= render "picks/pick_button", item: @item %>
+        
+        
         <div class="item-content">
           <%= @item.content.html_safe %>
         </div>

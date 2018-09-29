@@ -1,10 +1,14 @@
 class User < ApplicationRecord
   before_save { self.email.downcase! }
   # バリデーション
+  validates :belong, length: { maximum: 30 }
+  validates :location, length: { maximum: 50 }
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
+                    
+  
   has_many :items
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow

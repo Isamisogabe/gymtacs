@@ -1,31 +1,26 @@
 class ToppagesController < ApplicationController
+  before_action :require_user_logged_in, only: [:timeline, :pick, :like]
+  before_action :set_follow_favorite_ranking, only: [:index, :timeline, :like, :pick]
   def index
     @user = User.new
-    
-    @items = Item.all.order("created_at DESC").page(params[:page])
-    
-  end
-  
-  def trend
+    if logged_in?
+      @items = Item.all.order("created_at DESC").page(params[:page])
+    else
+      @items = Item.all.order("created_at DESC").page(params[:page])
+    end
     
   end
   
   def timeline
-    if logged_in?
-      @items = current_user.feed_items.order('created_at DESC').page(params[:page])
-    end
+    @items = current_user.feed_items.order('created_at DESC').page(params[:page])
   end
   
   def like
-    if logged_in?
-      @items = current_user.favorite_items.page(params[:page])
-    end
+    @items = current_user.favorite_items.page(params[:page])
   end
   
   def pick
-    if logged_in?
-      @items = current_user.pick_items.page(params[:page])
-    end
+    @items = current_user.pick_items.page(params[:page])
   end
   
   def create
@@ -44,5 +39,12 @@ class ToppagesController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+  
+  def set_follow_favorite_ranking
+    @favorite_ranking_counts = Favorite.ranking
+    @favorite_items = Item.find(@favorite_ranking_counts.keys)
+    @follow_ranking_counts = Relationship.ranking
+    @follow_users = User.find(@follow_ranking_counts.keys)
   end
 end

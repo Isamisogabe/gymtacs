@@ -10,3 +10,33 @@ article p {
   font-size: 18px;
   line-height: 1.8;
 }
+// トップページ、お気に入りリストの背景カラー処理
+div.login-toppage_list p{
+  background-color: #D3D3D3;
+}
+div.toppage_list p {
+  font-size: 1.1rem;
+  background-color: #EEEEEE;
+  padding: 20px 10px 20px 10px;
+  font-weight: bold;
+}
+div.toppage_list p.active {
+  
+  font-size: 1.2rem;
+  
+}
+div.toppage_list p.active{
+  background-color: white;
+}
+  
+
+.col-md-2{
+  border-right: 10px solid #DCDCDC;
+}
+.toppage_list p span{
+  color: #778899;
+}
+section.toppage-section {
+  
+  padding-bottom: 20px;
+}

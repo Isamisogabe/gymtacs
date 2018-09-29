@@ -1,5 +1,5 @@
 <% unless logged_in? %>
-  <section id="toppage-signin">
+  <section id="toppage-signin" class="toppage-section">
     <div class="row">
       <div class=" col-sm-6">
         <article>
@@ -40,39 +40,30 @@
     </div>
   </section>
   
-  <section>
+  <section class="toppage-section">
     <div class="row">
       <div class="col-md-2">
-        <ul>
-          <li><%= link_to "トレンド", root_url %></li>
-        </ul>
+        <div class="toppage-list">
+          <p class="active"><%= link_to "トレンド", root_url %></p>
+        </div>
       </div>
       <div class="col-md-8">
-        <%= render 'items/items', items: @items %>
+        <div class="list-title-name-items">
+          <%= render 'items/items', items: @items %>
+        </div>
       </div>
       <div class="col-md-2">
-        ランキングの場所
+        <div class="ranking">
+          <strong>ユーザーランキング</strong>
+        </div>
+        <%= render "users/ranking_users", follow_users: @follow_users, follow_ranking_counts: @follow_ranking_counts %>
+        <div class="ranking">
+          <strong>アイテムランキング</strong>
+        </div>
+        <%= render "items/ranking_items", favorite_items: @favorite_items, favorite_ranking_counts: @favorite_ranking_counts %>
       </div>
     </div>
   </section>
 <% else %>
-  <h1>ログイン後のページ</h1>
-  <section>
-    <div class="row">
-      <div class="col-md-2">
-        <ul>
-          <li class="<%= 'active' if current_page?(root_url) %>"><%= link_to "トレンド", root_url %></li>
-          <li class="<%= 'active' if current_page?(timeline_path) %>"><%= link_to "タイムライン", timeline_path %></li>
-          <li class="<%= 'active' if current_page?(like_path) %>"><%= link_to "お気に入り一覧", like_path %></li>
-          <li class="<%= 'active' if current_page?(pick_path) %>"><%= link_to "クリップ一覧", pick_path %></li>
-        </ul>
-      </div>
-      <div class="col-md-7">
-        <%= render 'items/items', items: @items %>
-      </div>
-      <div class="col-md-3">
-        ランキングの場所
-      </div>
-    </div>
-  </section>
+  <%= render "toppages/toppage" %>
 <% end %> 

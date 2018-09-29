@@ -25,9 +25,9 @@
   </aside>
   <div class="col-md-9">
     <ul class="nav nav-tabs nav-justified">
-      <li role="presentation"><a href="#items" data-toggle="tab">記事</a></li>
-      <li role="presentation"><a href="#followings" data-toggle="tab">フォロー</a></li>
-      <li role="presentation"><a href="#followers" data-toggle="tab">フォロワー</a></li>
+      <li role="presentation"><a href="#items" data-toggle="tab">記事 <span class="badge"> <%= @count_items %></span></a></li>
+      <li role="presentation"><a href="#followings" data-toggle="tab">フォロー <span class="badge"> <%= @count_followings %></span></a></li>
+      <li role="presentation"><a href="#followers" data-toggle="tab">フォロワー <span class="badge"> <%= @count_followers %></span></a></li>
     </ul>
     
     <div class="tab-content list-items">

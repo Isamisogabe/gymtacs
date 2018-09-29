@@ -8,10 +8,7 @@ class ApplicationController < ActionController::Base
     @count_followings = user.followings.count
     @count_followers = user.followers.count
   end
-  # アイテムが持つお気にいりの数
-  def count_users(item)
-    @count_user = item.favorite_users.count
-  end
+  
   
   private
   

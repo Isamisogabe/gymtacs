@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @items = @user.items.page(params[:page])
     @following_items = Item.where(user_id: @user.following_ids).page(params[:page])
     @follower_items = Item.where(user_id: @user.follower_ids).page(params[:page])
+    counts(@user)
   end
   
   def account

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show]
+  before_action :require_user_logged_in, only: [:show, :destroy]
   
   def show
     @user = User.find(params[:id])
@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @following_items = Item.where(user_id: @user.following_ids).page(params[:page])
     @follower_items = Item.where(user_id: @user.follower_ids).page(params[:page])
     counts(@user)
+  end
+  
+  def account_custom_image
+    @user = current_user
   end
   
   def account
@@ -22,6 +26,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    
     @user = User.new(user_params)
     
     if @user.save
@@ -33,7 +38,11 @@ class UsersController < ApplicationController
     end
   end
   
-  
+  def destroy
+    @user = current_user
+    @user.destroy if current_user
+    redirect_to root_url
+  end
   
   def followings
     @user = User.find(params[:id])
@@ -42,11 +51,9 @@ class UsersController < ApplicationController
   end
   
    def update
+     
     @user = current_user
-    if @user.update(user_profile_params)
-      flash[:success] = "更新しました"
-      redirect_to @user
-    elsif @user.update(user_account_params)
+    if @user.update(user_params) 
       flash[:success] = "更新しました"
       redirect_to @user
     else
@@ -65,14 +72,6 @@ class UsersController < ApplicationController
   private 
   
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-  
-  def user_profile_params
-    params.require(:user).permit(:location, :belong, :description)
-  end
-  
-  def user_account_params
-    params.require(:user).permit(:image, :email, :name)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :isuserimg?, :location,:belong, :description, :image)
   end
 end

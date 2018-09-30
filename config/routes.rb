@@ -34,8 +34,8 @@ Rails.application.routes.draw do
   #get 'toppages/index'
   #get 'settings/profile'
   #get 'settings/account'
-  #get 'settings/account/custom_image'
-  
+  get '/account_custom_image', to: 'users#account_custom_image'
+  put '/account_custom_image', to: 'users#account_custom_image'
   
   # ログイン・ログアウト関係
   get 'login', to: 'sessions#new'

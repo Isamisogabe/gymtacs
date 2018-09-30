@@ -2,17 +2,20 @@ class ItemsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user?, only: [:destroy, :update]
   def index
-    @draft_items = current_user.items.where(isdraft: true).order('created_at DESC').page(params[:page])
-    @upload_items = current_user.items.where(isdraft: false).order('created_at DESC').page(params[:page])
+    @draft_items = current_user.items.where(isdraft: true).order('updated_at DESC').page(params[:page])
+    @upload_items = current_user.items.where(isdraft: false).order('updated_at DESC').page(params[:page])
     @item = @draft_items.first
+    @user = current_user
   end
   
   def new
     @item = current_user.items.build
+    @user = current_user
   end
   
   def edit
     @item = Item.find(params[:id])
+    @user = current_user
   end
   
   def update
@@ -27,19 +30,22 @@ class ItemsController < ApplicationController
   
   def show
     @item = Item.find(params[:id])
-    @draft_items = current_user.items.where(isdraft: true).order('created_at DESC').page(params[:page])
-    @upload_items = current_user.items.where(isdraft: false).order('created_at DESC').page(params[:page])
+    @draft_items = current_user.items.where(isdraft: true).order('updated_at DESC').page(params[:page])
+    @upload_items = current_user.items.where(isdraft: false).order('updated_at DESC').page(params[:page])
     @user = User.find(@item.user_id)
   end
   
   def create
+
+   
+
     @item = current_user.items.build(item_params)
     if @item.save &&  !@item.isdraft
       flash[:success] = "記事を投稿しました"
-      redirect_to items_index_path
+      redirect_to items_path
     elsif @item.save && @item.isdraft
       flash[:success] = "記事を下書きとして保存しました"
-      redirect_to items_index_path
+      redirect_to items_path
     elsif !@item.isdraft
       flash[:danger] = "記事の投稿は失敗しました"
       render :new
@@ -53,6 +59,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    
     @item.destroy
     flash[:success] = "記事を削除しました"
     redirect_to items_index_path

@@ -2,24 +2,29 @@ class ToppagesController < ApplicationController
   before_action :require_user_logged_in, only: [:timeline, :pick, :like]
   before_action :set_follow_favorite_ranking, only: [:index, :timeline, :like, :pick]
   def index
-    @user = User.new
+    
     if logged_in?
-      @items = Item.all.order("created_at DESC").page(params[:page])
+      @items = Item.where(isdraft: false).order("created_at DESC").page(params[:page])
+      @user = current_user
     else
-      @items = Item.all.order("created_at DESC").page(params[:page])
+      @items = Item.where(isdraft: false).order("created_at DESC").page(params[:page])
+      @user = User.new
     end
     
   end
   
   def timeline
+    @user = current_user
     @items = current_user.feed_items.order('created_at DESC').page(params[:page])
   end
   
   def like
+    @user = current_user
     @items = current_user.favorite_items.page(params[:page])
   end
   
   def pick
+    @user = current_user
     @items = current_user.pick_items.page(params[:page])
   end
   

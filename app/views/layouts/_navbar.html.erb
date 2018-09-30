@@ -19,13 +19,13 @@
             <li><%= link_to "ファイル一覧", pick_path %></li>
             <li><%= link_to "投稿する", :new_item %></li>
             <li class"dropdown">
-              <button class="btn btn-default navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">
-            		ユーザー設定
+              <button class="btn btn-success navbar-btn dropdown-toggle" type="button" data-toggle="dropdown">
+            		<%= render "users/user_photo", user: current_user %>
             		<span class="caret"></span>
             	</button>
             	<ul class="dropdown-menu" role="menu">
             	  <li role="presentation"><%= link_to "マイページ", @current_user %></li>
-            	  <li role="presentation"><%= link_to "下書き一覧", "/items/index" %></li>
+            	  <li role="presentation"><%= link_to "下書き一覧", items_path %></li>
             	  <li role="presentation"><%= link_to "設定", settings_path %></li>
             		<li role="presentation"><%= link_to "ログアウト", logout_path, method: :delete %></li>
             	</ul>

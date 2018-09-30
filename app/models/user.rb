@@ -1,24 +1,27 @@
 class User < ApplicationRecord
   before_save { self.email.downcase! }
+  mount_uploader :image, ImageUploader
   # バリデーション
+  validates :image, length: { maximum: 50000 }
+  validates :description, length: { maximum: 100 }
   validates :belong, length: { maximum: 30 }
-  validates :location, length: { maximum: 50 }
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :location, length: { maximum: 30 }
+  validates :name, presence: true, length: { maximum: 30 }
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
                     
   
   has_many :items
-  has_many :relationships
-  has_many :followings, through: :relationships, source: :follow
+  has_many :relationships ,dependent: :destroy
+  has_many :followings, through: :relationships, source: :follow 
   has_many :reverses_of_relathionship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverses_of_relathionship, source: :user
   
   #favorite機能・pick機能
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :favorite_items, through: :favorites, source: :item
-  has_many :picks
+  has_many :picks, dependent: :destroy
   has_many :pick_items, through: :picks, source: :item
   
   
@@ -32,8 +35,8 @@ class User < ApplicationRecord
   end
   
   def unpick(item)
-    pick = self.favorites.find_by(item_id: item.id)
-    pick.destroy if favorite
+    pick = self.picks.find_by(item_id: item.id)
+    pick.destroy if pick
   end
   
   def favorite?(item)
@@ -60,7 +63,7 @@ class User < ApplicationRecord
   end
   
   def feed_items
-    Item.where(user_id: self.following_ids + [self.id])
+    Item.where(user_id: self.following_ids + [self.id], isdraft: false)
   end
   
   def unfollow(other_user)

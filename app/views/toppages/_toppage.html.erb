@@ -18,14 +18,16 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="ranking">
-          <strong>ユーザーランキング</strong>
-        </div>
+      <div class="ranking" id="user-ranking">
+        <strong>ユーザーランキング</strong>
         <%= render "users/ranking_users", follow_users: @follow_users, follow_ranking_counts: @follow_ranking_counts %>
-        <div class="ranking">
-          <strong>アイテムランキング</strong>
-        </div>
-      <%= render "items/ranking_items", favorite_items: @favorite_items, favorite_ranking_counts: @favorite_ranking_counts %>
+      </div>
+      
+      <div class="ranking" id="item-ranking">
+        <strong>記事ランキング</strong>
+        <%= render "items/ranking_items", favorite_items: @favorite_items, favorite_ranking_counts: @favorite_ranking_counts %>
+      </div>
+      
       
     </div>
   </div>

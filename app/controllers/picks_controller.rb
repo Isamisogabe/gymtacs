@@ -9,8 +9,8 @@ class PicksController < ApplicationController
 
   def destroy
     item = Item.find(params[:item_id])
-    current_user.unfavorite(item)
+    current_user.unpick(item)
     flash[:success] = '記事をファイルからはずしました'
-    redirect_to item
+    redirect_to root_url
   end
 end

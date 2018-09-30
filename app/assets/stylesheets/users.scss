@@ -7,3 +7,31 @@
 .account-list {
   background-color: #FFFFCC;
 }
+// ユーザーランキングのメディアcss表示
+ul.media-users li{
+  background-color: white;
+  padding: 10px 10px;
+  border-bottom: 3px solid #EEEEEE;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+#user-ranking{
+  background-color: white;
+  padding: 10px 10px;
+}
+// プロフィールの自動改行
+.user-name{
+  word-break:break-all;
+}
+.user-location{
+  word-break:break-all;
+}
+.user-belong{
+  word-break:break-all;
+}
+.user-description{
+  word-break:break-all;
+}
+.user-profile span{
+  color: #aaaaaa;
+}

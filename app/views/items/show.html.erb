@@ -28,7 +28,7 @@
         <div>
           <div class="item-title">
             <h1><%= @item.title %></h1>
-            <p>更新日時：　<%= @item.updated_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@item.created_at.wday]})") %></p>
+            <p>更新日時：　<%= render "items/update_time", item: @item %></p>
           </div>
           
           <div class="item-content">
@@ -58,7 +58,7 @@
             <%= render "items/favorite_button", item: @item %>
           </div>
           <div class="col-md-4">
-            <%= render "picks/pick_button", item: @item %>
+            <%= render "items/pick_button", item: @item %>
           </div>
         </div>
         

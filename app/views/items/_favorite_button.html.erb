@@ -2,7 +2,7 @@
 <% if current_user.favorite?(item) %>
   <%= form_for(current_user.favorites.find_by(item_id: item.id), html: {method: :delete}) do |f| %>
     <%= hidden_field_tag :item_id, item.id %>
-    <%= f.submit 'お気に入りに登録を解除', class: 'btn btn-danger btn-block' do %>
+    <%= f.submit 'お気に入りに登録を解除', class: 'btn btn-default btn-block' do %>
       <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
     <% end %>
   <% end %>

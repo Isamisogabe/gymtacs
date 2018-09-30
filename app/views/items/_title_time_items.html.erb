@@ -1,16 +1,17 @@
 <% if items.any? %>
   <% items.each do |item| %>
     <div class="item" >
-      <a class="item-title-time" href="./<%= item.id %>">
-        <div>
+      <a class="item-title-time" href="../items/<%= item.id %>">
+        <div class="item-title">
           <h4>
-            <%= item.title%>
+            <p><%= item.title %></p>
           </h4>
         </div>
         <div>
-          <p><%= item.created_at.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[item.created_at.wday]})") %></p>
+          <%= render "items/update_time", item: item %>
         </div>
       </a>
     </div>
   <% end %>
+  <%= paginate items %>
 <% end %>

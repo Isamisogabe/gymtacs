@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-1">
 
-    <%= link_to "./#{item.id}/edit", class: 'btn btn-default' do  %>
+    <%= link_to edit_item_path(item), class: 'btn btn-default' do  %>
       <span class="glyphicon glyphicon-pencil"></span> 編集
     <% end %>
   </div>

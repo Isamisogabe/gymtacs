@@ -36,6 +36,7 @@
         <div>
           <div class="item-title">
             <h2><%= @draft_items.first.title %></h2>
+            <p>更新日時：　<%= render "items/update_time", item: @item %></p>
           </div>
           <div class="item-content">
             <p><%= @draft_items.first.content.html_safe %></p>

@@ -1,3 +1,12 @@
+<!-- isdraftの値変更関数の指定 -->
+<script>
+  function set_draft() {
+    
+    $("#item_isdraft").val("false");
+  }
+  
+</script>
+
 <div>
   <%= form_for(@item) do |f| %>
     <% if @item.errors.any? %>
@@ -17,9 +26,9 @@
       <%= f.label :content, '本文作成欄' %>
       <%= f.cktext_area :content, class: "form-control item-title" %>
     </div>
-    <%= f.hidden_field :isdraft, value: false %>
-    <%= f.submit "投稿" , class: "btn btn-primary" %>
     <%= f.hidden_field :isdraft, value: true %>
-    <%= f.submit "下書きとして保存" , class: "btn btn-default" %>
+    <%= f.submit '投稿する', id: "publicbtn", class: "btn btn-primary", onclick:"set_draft();"%>
+    <%= f.submit '下書きとして保存', class: "btn btn-default " %>
   <% end %>
+  
 </div>

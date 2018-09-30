@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-md-3">
 		<ul class="list-group">
@@ -8,16 +9,47 @@
   <div class="col-md-9">
     <div class="row">
       <div class="col-md-6 col-md-offset-2">
-        <img src="<%= gravatar_url(@user, {size: 50 }) %>" alt="ユーザー写真" class="img-rounded" >
+        <%= render "users/user_photo", user: current_user %>
         <%= link_to @user.name, @user %> /　アカウント設定
       </div>
       <div class="col-md-offset-4"></div>
-        <%= form_for account_path(@user), method: :put do |f| %>
+        <%= form_for(@user) do |f| %>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <ul class="well well-lg">
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
           <div class="col-md-offset-1 col-md-10">
             
             <div class="form-group">
               <%= f.label :image, '写真設定' %>
-              <%= select @user, :image, [["gravatar画像",false], ["ユーザー写真",true]], class: 'form-control' %>
+              
+              <div class="row">
+                <div class="col-md-6">
+                  <input name="user[isuserimg?]" type="radio" value="false" id="user_isuserimg?"  />
+                  <img src="<%= gravatar_url(@user,{size:  40}) %>" alt="グラバター">
+                  グラバター写真
+                </div>
+                <div class="col-md-6">
+                  もしくは
+                  <% if @user.isuserimg? %>
+                　　<%= image_tag @user.image.thumb.url %>
+                　　<%= f.hidden_field :image, value: @user.image %>
+                　　
+                　<% else %>
+                　　<%= image_tag 'noimage.gif' %>
+                　<% end %>
+                  <%= link_to '写真を選択', account_custom_image_path %>
+                  
+                </div>
+                
+              </div>
+              
+              
             </div>
             
             <div class="form-group">
@@ -43,7 +75,7 @@
     
     <div class="row">
       <div class="col-md-2 col-md-offset-1">
-        <%= link_to "削除する", user_path(@user), method: :delete, class: "btn btn-danger" %>
+        <%= link_to "削除する", user_path(@user), method: :delete, class: "btn btn-danger", html: {confirm: "アカウントを本当に削除しますか?"} %>
       </div>
       <div class="col-md-offset-9"></div>
     </div>

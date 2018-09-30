@@ -1,5 +1,5 @@
 <% if follow_users.any? %>
-  <ul class="media-list">
+  <ul class="media-list media-users">
     <% follow_users.each_with_index do |user, index| %>
       <li class="media">
         <div class="media-left">
@@ -8,7 +8,11 @@
         <div class="media-left">
           
           <a href="/users/<%= user.id %>" >
-            <img alt="ユーザー写真" src="<%= gravatar_url(user, {size: 40 }) %>" class="img-rounded">
+            <% if user.isuserimg? %>
+              <img src="<%= user.image.thumb.url %>" alt="ユーザー写真" class="img-rounded" >
+            <% else %>
+              <img src="<%= gravatar_url(user, {size: 50 }) %>" alt="ユーザー写真" class="img-rounded" >
+            <% end %>
           </a>
         </div>
         <div class="media-body">

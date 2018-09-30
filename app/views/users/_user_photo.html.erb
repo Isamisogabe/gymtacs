@@ -1,0 +1,5 @@
+<% if user.image? %>
+  <img src="<%= user.image.thumb.url %>" alt="" class="img-rounded" >
+<% else %>
+  <img src="<%= gravatar_url(user, {size: 50 }) %>" alt="" class="img-rounded" >
+<% end %>

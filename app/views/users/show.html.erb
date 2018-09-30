@@ -1,23 +1,27 @@
 <div class="row">
   <aside class="col-md-3">
-    <div class="intro">
-      <div class="intro-img">
-        <img src="<%= gravatar_url(@user, {size: 500 }) %>" alt="ユーザー写真" class="img-responsive img-rounded">
+    <div class="user-profile">
+      <div class="user-img">
+        <% if @user.image? %>
+      　　<%= image_tag @user.image.big_thumb.url, class: 'img-rounded' %>
+      　<% else %>
+      　　<img src="<%= gravatar_url(@user, {size: 250}) %>" class="img-rounded">
+      　<% end %>
       </div>
-      <div class="intro-name">
+      <div class="user-name">
         
         <h2><%= @user.name %></h2>
       </div>
       <%= render 'relationships/follow_button', user: @user %>
-      <div class="intro-description">
+      <div class="user-description">
         <span class="glyphicon glyphicon-comment"></span>
         <%= @user.description %>
       </div>
-      <div class="intro-belong">
+      <div class="user-belong">
         <span class="glyphicon glyphicon-briefcase"></span>
         <%= @user.belong %>
       </div>
-      <div class="intro-location">
+      <div class="user-location">
         <span class="glyphicon glyphicon-map-marker"></span>
         <%= @user.location %>
       </div>
